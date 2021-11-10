@@ -3,7 +3,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
-  OnBoarding({Key? key}) : super(key: key);
+  const OnBoarding({Key? key}) : super(key: key);
 
   @override
   State<OnBoarding> createState() => _OnBoardingState();
@@ -52,13 +52,14 @@ class _OnBoardingState extends State<OnBoarding> {
 
   Widget _buildAppLogo() {
     return Container(
-      margin: const EdgeInsets.only(top: 30.0),
+      margin: const EdgeInsets.only(top: 25.0),
       child: const Text(
         'kcal',
         style: TextStyle(
-            fontWeight: FontWeight.w800,
-            fontSize: 32.0,
-            color: Color(0Xff91c789)),
+          fontWeight: FontWeight.w800,
+          fontSize: 32.0,
+          color: Color(0Xff91c789),
+        ),
       ),
     );
   }
@@ -69,7 +70,7 @@ class _OnBoardingState extends State<OnBoarding> {
       children: [
         CarouselSlider.builder(
           options: CarouselOptions(
-            height: 405,
+            height: 410,
             enableInfiniteScroll: false,
             initialPage: 0,
             viewportFraction: 1,
@@ -93,7 +94,7 @@ class _OnBoardingState extends State<OnBoarding> {
               dotWidth: 16.0,
               dotHeight: 9.0,
               dotColor: Colors.red.shade100,
-              activeDotColor: Colors.redAccent.shade100),
+              activeDotColor: Theme.of(context).primaryColor),
         ),
       ],
     );
@@ -112,31 +113,27 @@ class _OnBoardingState extends State<OnBoarding> {
             image: headerImg,
             height: 300.0,
           ),
-          Column(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(bottom: 10.0),
-                child: Text(
-                  detailsHeader,
-                  style: const TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 10.0),
+            child: Text(
+              detailsHeader,
+              style: const TextStyle(
+                fontSize: 22.0,
+                fontWeight: FontWeight.w700,
               ),
-              Container(
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                child: Text(
-                  detailsText,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18.0,
-                    color: Colors.grey,
-                  ),
-                ),
-              )
-            ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Text(
+              detailsText,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 18.0,
+                color: Colors.grey,
+              ),
+            ),
           ),
         ],
       ),
@@ -161,13 +158,18 @@ class _OnBoardingState extends State<OnBoarding> {
                 color: Colors.grey.shade700,
               ),
             ),
-            const Text(
-              'Log In',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: Color(0Xff91c789),
-                fontWeight: FontWeight.w800,
+            InkWell(
+              child: const Text(
+                'Log In',
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Color(0Xff91c789),
+                  fontWeight: FontWeight.w800,
+                ),
               ),
+              onTap: () {
+                print('Login');
+              },
             ),
           ],
         ),

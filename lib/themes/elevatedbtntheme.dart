@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 ElevatedButtonThemeData elevatedButtonTheme() {
   return ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      primary: Colors.redAccent.shade100,
+      primary: const Color(0xFFFF9385),
       onPrimary: Colors.white,
       textStyle: const TextStyle(
         fontFamily: 'Nunito',
