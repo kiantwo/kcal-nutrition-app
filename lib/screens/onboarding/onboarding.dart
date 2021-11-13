@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:kcal_nutrition_app/screens/favorites/favorites.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -34,17 +35,15 @@ class _OnBoardingState extends State<OnBoarding> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              _buildAppLogo(),
-              _buildCarousel(),
-              _buildFooter(),
-            ],
-          ),
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            _buildAppLogo(),
+            _buildCarousel(),
+            _buildFooter(),
+          ],
         ),
       ),
     );
@@ -52,7 +51,7 @@ class _OnBoardingState extends State<OnBoarding> {
 
   Widget _buildAppLogo() {
     return Container(
-      margin: const EdgeInsets.only(top: 25.0),
+      margin: const EdgeInsets.only(top: 45.0),
       child: const Text(
         'kcal',
         style: TextStyle(
@@ -146,7 +145,13 @@ class _OnBoardingState extends State<OnBoarding> {
         Container(
           margin: const EdgeInsets.fromLTRB(0.0, 35.0, 0.0, 15.0),
           child: ElevatedButton(
-              child: const Text('Get Started'), onPressed: () {}),
+              child: const Text('Get Started'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Favorites()),
+                );
+              }),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

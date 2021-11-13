@@ -13,7 +13,7 @@ ElevatedButtonThemeData elevatedButtonTheme() {
       ),
       minimumSize: const Size(300.0, 65),
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.elliptical(16, 24)),
+        borderRadius: BorderRadius.all(Radius.elliptical(24, 18)),
       ),
       elevation: 0.0,
     ),

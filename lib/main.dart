@@ -47,48 +47,46 @@ class _SplashState extends State<Splash> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('images/splash.png'),
-                  fit: BoxFit.cover,
-                ),
+    return Scaffold(
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/splash.png'),
+                fit: BoxFit.cover,
               ),
             ),
-            const Center(
-              child: Text(
-                'kcal',
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 56.0,
-                  color: Colors.white,
-                ),
+          ),
+          const Center(
+            child: Text(
+              'kcal',
+              style: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontSize: 56.0,
+                color: Colors.white,
               ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 30.0),
-                  child: Center(
-                    child: Text(
-                      'ZUAMICA',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 28.0,
-                        color: Colors.white.withOpacity(0.5),
-                      ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                margin: const EdgeInsets.only(bottom: 30.0),
+                child: Center(
+                  child: Text(
+                    'ZUAMICA',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w800,
+                      fontSize: 28.0,
+                      color: Colors.white.withOpacity(0.5),
                     ),
                   ),
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
