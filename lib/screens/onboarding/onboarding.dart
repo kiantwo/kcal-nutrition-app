@@ -57,7 +57,7 @@ class _OnBoardingState extends State<OnBoarding> {
         style: TextStyle(
           fontWeight: FontWeight.w800,
           fontSize: 32.0,
-          color: Theme.of(context).colorScheme.secondary,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );
@@ -93,7 +93,7 @@ class _OnBoardingState extends State<OnBoarding> {
               dotWidth: 16.0,
               dotHeight: 9.0,
               dotColor: Colors.red.shade100,
-              activeDotColor: Theme.of(context).primaryColor),
+              activeDotColor: Theme.of(context).colorScheme.secondary),
         ),
       ],
     );
@@ -168,7 +168,7 @@ class _OnBoardingState extends State<OnBoarding> {
                 'Log In',
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Theme.of(context).colorScheme.secondary,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.w800,
                 ),
               ),

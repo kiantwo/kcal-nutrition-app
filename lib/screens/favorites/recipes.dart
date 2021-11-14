@@ -7,9 +7,9 @@ import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'components/imagehero.dart';
 
 class Recipes extends StatefulWidget {
-  Recipes({Key? key, required this.recipeList}) : super(key: key);
+  const Recipes({Key? key, required this.recipeList}) : super(key: key);
 
-  List<Recipe> recipeList = [];
+  final List<Recipe> recipeList;
 
   @override
   State<Recipes> createState() => _RecipesState();
@@ -91,7 +91,7 @@ class _RecipesState extends State<Recipes> {
                       for (int i = 0; i < 5; i++)
                         i < singleRecipe.rating
                             ? Icon(IconlyBold.star,
-                                color: Theme.of(context).primaryColor,
+                                color: Theme.of(context).colorScheme.secondary,
                                 size: 14.0)
                             : Icon(IconlyBold.star,
                                 color: Colors.grey.shade400, size: 14.0),
@@ -328,7 +328,8 @@ class _RecipeInfoState extends State<RecipeInfo> {
                   for (int i = 0; i < 5; i++)
                     i < widget.recipe.rating
                         ? Icon(IconlyBold.star,
-                            color: Theme.of(context).primaryColor, size: 18.0)
+                            color: Theme.of(context).colorScheme.secondary,
+                            size: 18.0)
                         : Icon(IconlyBold.star,
                             color: Colors.grey.shade400, size: 18.0),
                 ],

@@ -19,11 +19,11 @@ class _KcalAppState extends State<KcalApp> {
     "User"
   ];
 
-  static final List<Widget> _page = <Widget>[
+  static const List<Widget> _page = <Widget>[
     DefaultScreen(pageIcon: IconlyLight.home, pageName: 'Home'),
     DefaultScreen(pageIcon: IconlyLight.search, pageName: 'Search'),
     DefaultScreen(pageIcon: IconlyLight.camera, pageName: 'Camera'),
-    const Favorites(),
+    Favorites(),
     DefaultScreen(pageIcon: IconlyLight.profile, pageName: 'User'),
   ];
 
@@ -62,7 +62,7 @@ class _KcalAppState extends State<KcalApp> {
         elevation: 0.0,
         currentIndex: _selectedIndex,
         unselectedItemColor: const Color(0xff888a87),
-        selectedItemColor: Theme.of(context).primaryColor,
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         selectedFontSize: 8.0,
@@ -85,8 +85,8 @@ class _KcalAppState extends State<KcalApp> {
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: _selectedIndex == 2
-                      ? Theme.of(context).primaryColor
-                      : Theme.of(context).colorScheme.secondary),
+                      ? Theme.of(context).colorScheme.secondary
+                      : Theme.of(context).primaryColor),
               child: const Padding(
                 padding: EdgeInsets.all(10.0),
                 child: Icon(
@@ -126,10 +126,11 @@ class _KcalAppState extends State<KcalApp> {
 }
 
 class DefaultScreen extends StatelessWidget {
-  DefaultScreen({Key? key, required this.pageIcon, required this.pageName})
+  const DefaultScreen(
+      {Key? key, required this.pageIcon, required this.pageName})
       : super(key: key);
-  IconData pageIcon;
-  String pageName;
+  final IconData pageIcon;
+  final String pageName;
 
   @override
   Widget build(BuildContext context) {

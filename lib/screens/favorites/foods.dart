@@ -6,9 +6,9 @@ import 'package:flutter_iconly/flutter_iconly.dart';
 import 'components/imagehero.dart';
 
 class Foods extends StatelessWidget {
-  Foods({Key? key, required this.foodList}) : super(key: key);
+  const Foods({Key? key, required this.foodList}) : super(key: key);
 
-  List<Food> foodList = [];
+  final List<Food> foodList;
 
   @override
   Widget build(BuildContext context) {

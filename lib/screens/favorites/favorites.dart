@@ -44,11 +44,11 @@ class _FavoritesState extends State<Favorites> {
 
   Widget _buildToggleButtons() {
     return ToggleButtons(
-      fillColor: Theme.of(context).colorScheme.secondary,
+      fillColor: Theme.of(context).primaryColor,
       selectedBorderColor: Colors.transparent,
       borderColor: Colors.transparent,
       selectedColor: Colors.white,
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).primaryColor,
       //f4f9f3
       borderRadius: const BorderRadius.all(Radius.elliptical(24, 16)),
       children: [
@@ -58,7 +58,7 @@ class _FavoritesState extends State<Favorites> {
             vertical: 15.0,
           ),
           color: _isSelected[0]
-              ? Theme.of(context).colorScheme.secondary
+              ? Theme.of(context).primaryColor
               : const Color(0xfff4f9f3),
           child: const Text(
             'Foods',
@@ -75,7 +75,7 @@ class _FavoritesState extends State<Favorites> {
             vertical: 15.0,
           ),
           color: _isSelected[1]
-              ? Theme.of(context).colorScheme.secondary
+              ? Theme.of(context).primaryColor
               : const Color(0xfff4f9f3),
           child: const Text(
             'Recipes',

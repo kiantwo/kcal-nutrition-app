@@ -16,9 +16,9 @@ class MyApp extends StatelessWidget {
       title: 'Kcal Nutrition App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color(0xFFFF9385),
+        primaryColor: const Color(0Xff91c789),
         colorScheme: ColorScheme.fromSwatch()
-            .copyWith(secondary: const Color(0Xff91c789)),
+            .copyWith(secondary: const Color(0xFFFF9385)),
         //Green Color: Color(0xFF7EAD77)
         fontFamily: 'Nunito',
         elevatedButtonTheme: elevatedButtonTheme(),
