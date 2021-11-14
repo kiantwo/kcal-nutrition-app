@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:kcal_nutrition_app/screens/favorites/favorites.dart';
+import 'package:kcal_nutrition_app/screens/rootapp.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoarding extends StatefulWidget {
@@ -11,9 +11,9 @@ class OnBoarding extends StatefulWidget {
 }
 
 class _OnBoardingState extends State<OnBoarding> {
-  int activeIndex = 0;
+  int _activeIndex = 0;
 
-  final onBoardingInfo = [
+  final _onBoardingInfo = [
     {
       'img': const AssetImage('images/eat-healthy.png'),
       'title': 'Eat Healthy',
@@ -40,24 +40,24 @@ class _OnBoardingState extends State<OnBoarding> {
         alignment: Alignment.center,
         child: Column(
           children: [
-            _buildAppLogo(),
+            _buildAppLogo(context),
             _buildCarousel(),
-            _buildFooter(),
+            _buildFooter(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAppLogo() {
+  Widget _buildAppLogo(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 45.0),
-      child: const Text(
+      child: Text(
         'kcal',
         style: TextStyle(
           fontWeight: FontWeight.w800,
           fontSize: 32.0,
-          color: Color(0Xff91c789),
+          color: Theme.of(context).colorScheme.secondary,
         ),
       ),
     );
@@ -74,19 +74,19 @@ class _OnBoardingState extends State<OnBoarding> {
             initialPage: 0,
             viewportFraction: 1,
             onPageChanged: (index, reason) =>
-                setState(() => activeIndex = index),
+                setState(() => _activeIndex = index),
           ),
-          itemCount: onBoardingInfo.length,
+          itemCount: _onBoardingInfo.length,
           itemBuilder: (context, index, realIndex) => _buildOnBoardingDetails(
-            headerImg: onBoardingInfo[index]['img'] as ImageProvider,
-            detailsHeader: onBoardingInfo[index]['title'] as String,
-            detailsText: onBoardingInfo[index]['subtitle'] as String,
+            headerImg: _onBoardingInfo[index]['img'] as ImageProvider,
+            detailsHeader: _onBoardingInfo[index]['title'] as String,
+            detailsText: _onBoardingInfo[index]['subtitle'] as String,
             context: context,
           ),
         ),
         AnimatedSmoothIndicator(
-          activeIndex: activeIndex,
-          count: onBoardingInfo.length,
+          activeIndex: _activeIndex,
+          count: _onBoardingInfo.length,
           effect: ScrollingDotsEffect(
               spacing: 6.0,
               radius: 8.0,
@@ -139,7 +139,7 @@ class _OnBoardingState extends State<OnBoarding> {
     );
   }
 
-  Widget _buildFooter() {
+  Widget _buildFooter(BuildContext context) {
     return Column(
       children: [
         Container(
@@ -149,7 +149,7 @@ class _OnBoardingState extends State<OnBoarding> {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Favorites()),
+                  MaterialPageRoute(builder: (context) => const KcalApp()),
                 );
               }),
         ),
@@ -164,11 +164,11 @@ class _OnBoardingState extends State<OnBoarding> {
               ),
             ),
             InkWell(
-              child: const Text(
+              child: Text(
                 'Log In',
                 style: TextStyle(
                   fontSize: 16.0,
-                  color: Color(0Xff91c789),
+                  color: Theme.of(context).colorScheme.secondary,
                   fontWeight: FontWeight.w800,
                 ),
               ),

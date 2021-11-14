@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color(0xFFFF9385),
+        colorScheme: ColorScheme.fromSwatch()
+            .copyWith(secondary: const Color(0Xff91c789)),
         //Green Color: Color(0xFF7EAD77)
         fontFamily: 'Nunito',
         elevatedButtonTheme: elevatedButtonTheme(),

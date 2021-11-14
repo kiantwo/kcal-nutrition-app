@@ -37,6 +37,7 @@ dependencies:
   carousel_slider: ^4.0.0
   smooth_page_indicator: ^1.0.0+2
   flutter_iconly: ^1.0.2
+  eva_icons_flutter: ^3.0.2
 
 dev_dependencies:
   flutter_test:
@@ -69,13 +70,8 @@ flutter:
     - images/food.png
     - images/recipe.png
     
-    - images/food/burger.png
-    - images/food/cookie.png
-    - images/food/cake.png
-    - images/food/donut.png
-    - images/food/fries.png
-    - images/food/hotdog.png
-    - images/food/pizza.png
+    - images/food/
+    - images/ingredients/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

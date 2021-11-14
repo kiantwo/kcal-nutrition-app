@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kcal_nutrition_app/classes/food.dart';
 import 'package:kcal_nutrition_app/classes/recipe.dart';
-import 'package:kcal_nutrition_app/components/navbar.dart';
 import 'package:kcal_nutrition_app/screens/favorites/foods.dart';
 import 'package:kcal_nutrition_app/screens/favorites/recipes.dart';
 
@@ -14,59 +13,42 @@ class Favorites extends StatefulWidget {
 
 class _FavoritesState extends State<Favorites> {
   int activeIndex = 0;
-  List<bool> isSelected = [true, false];
+  final List<bool> _isSelected = [true, false];
 
-  List<Food> food = [];
-  List<Recipe> recipe = [];
+  List<Food> _foodList = [];
+  List<Recipe> _recipeList = [];
 
   @override
   void initState() {
     setState(() {
-      //populate Favorite Food
-      populateFood();
-      populateRecipe();
+      _populateFood();
+      _populateRecipe();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        toolbarHeight: 75.0,
-        title: const Text(
-          'Favorites',
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-            fontSize: 16.0,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0.0,
+    return Container(
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          _buildToggleButtons(),
+          _isSelected[0]
+              ? Foods(foodList: _foodList)
+              : Recipes(recipeList: _recipeList),
+        ],
       ),
-      body: Container(
-        alignment: Alignment.center,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _buildToggleButtons(),
-            isSelected[0] ? Foods(food: food) : Recipes(recipe: recipe),
-          ],
-        ),
-      ),
-      bottomNavigationBar: buildNavBar(context),
     );
   }
 
   Widget _buildToggleButtons() {
     return ToggleButtons(
-      fillColor: const Color(0Xff91c789),
+      fillColor: Theme.of(context).colorScheme.secondary,
       selectedBorderColor: Colors.transparent,
       borderColor: Colors.transparent,
       selectedColor: Colors.white,
-      color: const Color(0Xff91c789),
+      color: Theme.of(context).colorScheme.secondary,
       //f4f9f3
       borderRadius: const BorderRadius.all(Radius.elliptical(24, 16)),
       children: [
@@ -75,8 +57,9 @@ class _FavoritesState extends State<Favorites> {
             horizontal: 55.0,
             vertical: 15.0,
           ),
-          color:
-              isSelected[0] ? const Color(0Xff91c789) : const Color(0xfff4f9f3),
+          color: _isSelected[0]
+              ? Theme.of(context).colorScheme.secondary
+              : const Color(0xfff4f9f3),
           child: const Text(
             'Foods',
             style: TextStyle(
@@ -91,8 +74,9 @@ class _FavoritesState extends State<Favorites> {
             horizontal: 50.0,
             vertical: 15.0,
           ),
-          color:
-              isSelected[1] ? const Color(0Xff91c789) : const Color(0xfff4f9f3),
+          color: _isSelected[1]
+              ? Theme.of(context).colorScheme.secondary
+              : const Color(0xfff4f9f3),
           child: const Text(
             'Recipes',
             style: TextStyle(
@@ -104,17 +88,17 @@ class _FavoritesState extends State<Favorites> {
       ],
       onPressed: (int index) {
         setState(() {
-          for (int i = 0; i < isSelected.length; i++) {
-            isSelected[i] = i == index;
+          for (int i = 0; i < _isSelected.length; i++) {
+            _isSelected[i] = i == index;
           }
         });
       },
-      isSelected: isSelected,
+      isSelected: _isSelected,
     );
   }
 
-  void populateFood() {
-    food = [
+  void _populateFood() {
+    _foodList = [
       Food(
         name: 'Cookie',
         altName: 'Biscuit',
@@ -128,6 +112,10 @@ class _FavoritesState extends State<Favorites> {
               'https://tastesbetterfromscratch.com/wp-content/uploads/2018/05/Chocolate-Chip-Cookies-2.jpg'),
           const NetworkImage(
               'https://cdn.loveandlemons.com/wp-content/uploads/2020/12/cookie-recipes.jpg'),
+          const NetworkImage(
+              'https://natashaskitchen.com/wp-content/uploads/2020/05/Chocolate-Chip-Cookies-Recipe.jpg'),
+          const NetworkImage(
+              'https://www.livewellbakeoften.com/wp-content/uploads/2020/08/Small-Batch-Chocolate-Chip-Cookies-4s.jpg'),
         ],
       ),
       Food(
@@ -143,6 +131,10 @@ class _FavoritesState extends State<Favorites> {
               'https://cookieandkate.com/images/2013/05/best-veggie-burger-recipe-3.jpg'),
           const NetworkImage(
               'https://www.thespruceeats.com/thmb/l4w6PvMqsz1EjueCAh_foPmYafM=/3456x3456/smart/filters:no_upscale()/garlic-burger-patties-333503-hero-01-e4df660ff27b4e5194fdff6d703a4f83.jpg'),
+          const NetworkImage(
+              'https://www.tasteofhome.com/wp-content/uploads/2020/03/Smash-Burgers_EXPS_TOHcom20_246232_B10_06_10b.jpg'),
+          const NetworkImage(
+              'https://images.unsplash.com/photo-1571091718767-18b5b1457add?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8YnVyZ2VyfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&w=1000&q=80'),
         ],
       ),
       Food(
@@ -158,6 +150,10 @@ class _FavoritesState extends State<Favorites> {
               'https://thescranline.com/wp-content/uploads/2021/03/Vanilla-Cupcakes.jpg'),
           const NetworkImage(
               'https://www.theflavorbender.com/wp-content/uploads/2020/06/Chocolate-Cupcakes-SM-5629.jpg'),
+          const NetworkImage(
+              'https://handletheheat.com/wp-content/uploads/2016/02/best-chocolate-cupcakes-recipe-SQUARE.jpg'),
+          const NetworkImage(
+              'https://www.recipetineats.com/wp-content/uploads/2020/09/Vanilla-Cupcakes-with-Vanilla-Swiss-Meringue-SQ.jpg'),
         ],
       ),
       Food(
@@ -173,6 +169,10 @@ class _FavoritesState extends State<Favorites> {
               'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-190731-air-fryer-pizza-0202-landscape-pf-1565820595.jpg'),
           const NetworkImage(
               'https://www.kingarthurbaking.com/sites/default/files/styles/featured_image/public/2020-03/hawaiian-pizza.jpg?itok=a1-_QjRA'),
+          const NetworkImage(
+              'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-homemade-pizza-horizontal-1542312378.png?crop=1.00xw:1.00xh;0,0&resize=480:*'),
+          const NetworkImage(
+              'https://www.biggerbolderbaking.com/wp-content/uploads/2019/07/15-Minute-Pizza-WS-Thumbnail.png'),
         ],
       ),
       Food(
@@ -188,6 +188,9 @@ class _FavoritesState extends State<Favorites> {
               'https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_27/1586837/hotdogs-te-main-200702.jpg'),
           const NetworkImage(
               'https://media.istockphoto.com/photos/hotdog-picture-id185123377?b=1&k=20&m=185123377&s=170667a&w=0&h=m1L2w5WFqYOsXvpSEybhUifdhhwQUJCZY2YY-bFPyeE='),
+          const NetworkImage('https://static.toiimg.com/photo/75690366.cms'),
+          const NetworkImage(
+              'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-210326-blt-hotdog-02-landscape-jg-1622060198.jpg'),
         ],
       ),
       Food(
@@ -203,6 +206,10 @@ class _FavoritesState extends State<Favorites> {
               'https://40aprons.com/wp-content/uploads/2020/03/air-fryer-french-fries-4.jpg'),
           const NetworkImage(
               'https://www.thespruceeats.com/thmb/tXRCQhaBACOilf8tnzLhaW0uzbE=/3485x1960/smart/filters:no_upscale()/how-to-make-homemade-french-fries-2215971-hero-01-02f62a016f3e4aa4b41d0c27539885c3.jpg'),
+          const NetworkImage(
+              'https://static.fanpage.it/wp-content/uploads/sites/22/2020/09/iStock-618214356-1200x1200.jpg'),
+          const NetworkImage(
+              'https://www.dinneratthezoo.com/wp-content/uploads/2019/12/homemade-french-fries-5.jpg'),
         ],
       ),
       Food(
@@ -218,13 +225,17 @@ class _FavoritesState extends State<Favorites> {
               'http://cdn.sallysbakingaddiction.com/wp-content/uploads/2016/07/frosted-doughnuts-3-ways.jpg'),
           const NetworkImage(
               'https://prettysimplesweet.com/wp-content/uploads/2019/07/Chocolate-Donuts.jpg'),
+          const NetworkImage(
+              'https://i2.wp.com/completelydelicious.com/wp-content/uploads/2021/02/yeast-raised-doughnuts-6.jpg'),
+          const NetworkImage(
+              'https://www.cookingclassy.com/wp-content/uploads/2021/03/baked-donuts-02.jpg'),
         ],
       ),
     ];
   }
 
-  void populateRecipe() {
-    recipe = [
+  void _populateRecipe() {
+    _recipeList = [
       Recipe(
         name: 'Steak with Blistered Summer Vegetables & Fish Sauce Dressing',
         description:
@@ -237,8 +248,47 @@ class _FavoritesState extends State<Favorites> {
           Ingredient(
             name: 'Sirloin Steak',
             measurements: '450gm',
-            img: const NetworkImage(
-                'https://embed.widencdn.net/img/beef/melpznnl7q/800x600px/Top%20Sirloin%20Steak.psd?keep=c&u=7fueml'),
+            img: const AssetImage('images/ingredients/sirloin.png'),
+          ),
+          Ingredient(
+            name: 'Olive oil',
+            measurements: '1tsp',
+            img: const AssetImage('images/ingredients/olive-oil.png'),
+          ),
+          Ingredient(
+            name: 'Fish sauce',
+            measurements: '1tbsp',
+            img: const AssetImage('images/ingredients/fish-sauce.png'),
+          ),
+          Ingredient(
+            name: 'Baby gem lettuce',
+            measurements: '2 1/4',
+            img: const AssetImage('images/ingredients/baby-gem-lettuce.png'),
+          ),
+          Ingredient(
+            name: 'Spring onion',
+            measurements: 'Trimmed',
+            img: const AssetImage('images/ingredients/spring-onion.png'),
+          ),
+          Ingredient(
+            name: 'Asparagus',
+            measurements: 'Trimmed',
+            img: const AssetImage('images/ingredients/asparagus.png'),
+          ),
+          Ingredient(
+            name: 'Zucchini',
+            measurements: 'Sliced',
+            img: const AssetImage('images/ingredients/zucchini.png'),
+          ),
+          Ingredient(
+            name: 'Cilantro',
+            measurements: 'Picked',
+            img: const AssetImage('images/ingredients/cilantro.png'),
+          ),
+          Ingredient(
+            name: 'Roasted peanuts',
+            measurements: '2tbsp',
+            img: const AssetImage('images/ingredients/roasted-peanuts.png'),
           ),
         ],
         steps: [
@@ -264,8 +314,37 @@ class _FavoritesState extends State<Favorites> {
           Ingredient(
             name: 'Sirloin Steak',
             measurements: '1lb',
-            img: const NetworkImage(
-                'https://food.fnr.sndimg.com/content/dam/images/food/plus/fullset/2020/07/28/0/SEJI104_Steak-with-Blistered-Summer-Vegetables_s4x3.jpg.rend.hgtvcom.826.620.suffix/1595957872708.jpeg'),
+            img: const AssetImage('images/ingredients/sirloin.png'),
+          ),
+          Ingredient(
+            name: 'Kosher salt',
+            measurements: '',
+            img: const AssetImage('images/ingredients/kosher-salt.png'),
+          ),
+          Ingredient(
+            name: 'Unsalted butter',
+            measurements: '4tbsp',
+            img: const AssetImage('images/ingredients/unsalted-butter.png'),
+          ),
+          Ingredient(
+            name: 'Fresh parsley',
+            measurements: '1tbsp',
+            img: const AssetImage('images/ingredients/parsley.png'),
+          ),
+          Ingredient(
+            name: 'Fresh chives',
+            measurements: '1tbsp',
+            img: const AssetImage('images/ingredients/chives.png'),
+          ),
+          Ingredient(
+            name: 'Clove garlic',
+            measurements: 'Small',
+            img: const AssetImage('images/ingredients/clove-garlic.png'),
+          ),
+          Ingredient(
+            name: 'Red pepper flakes',
+            measurements: '1/4tsp',
+            img: const AssetImage('images/ingredients/red-pepper-flakes.png'),
           ),
         ],
         steps: [
@@ -289,8 +368,67 @@ class _FavoritesState extends State<Favorites> {
           Ingredient(
             name: 'Chicken',
             measurements: '4 1/2lbs',
-            img: const NetworkImage(
-                'https://pngimg.com/uploads/fried_chicken/fried_chicken_PNG97927.png'),
+            img: const AssetImage('images/ingredients/chicken.png'),
+          ),
+          Ingredient(
+            name: 'Canola oil',
+            measurements: '',
+            img: const AssetImage('images/ingredients/canola-oil.png'),
+          ),
+          Ingredient(
+            name: 'Coarse breadcrumbs',
+            measurements: '1 1/4cup',
+            img: const AssetImage('images/ingredients/breadcrumbs.png'),
+          ),
+          Ingredient(
+            name: 'Fine sea salt',
+            measurements: '',
+            img: const AssetImage('images/ingredients/kosher-salt.png'),
+          ),
+          Ingredient(
+            name: 'Freshly ground black pepper',
+            measurements: '',
+            img: const AssetImage('images/ingredients/ground-black-pepper.png'),
+          ),
+          Ingredient(
+            name: 'Cold salted butter',
+            measurements: '8tbsp',
+            img: const AssetImage('images/ingredients/unsalted-butter.png'),
+          ),
+          Ingredient(
+            name: 'Pork sausage',
+            measurements: '3oz',
+            img: const AssetImage('images/ingredients/pork-sausage.png'),
+          ),
+          Ingredient(
+            name: 'Large onions',
+            measurements: '1 1/2 diced',
+            img: const AssetImage('images/ingredients/large-onion.png'),
+          ),
+          Ingredient(
+            name: 'Fresh sage',
+            measurements: '1tbsp',
+            img: const AssetImage('images/ingredients/sage.png'),
+          ),
+          Ingredient(
+            name: 'Cloves garlic',
+            measurements: '3 minced',
+            img: const AssetImage('images/ingredients/clove-garlic.png'),
+          ),
+          Ingredient(
+            name: 'Swiss chard',
+            measurements: '1 1/2cup',
+            img: const AssetImage('images/ingredients/swiss-chard.png'),
+          ),
+          Ingredient(
+            name: 'Chives',
+            measurements: '1/3cup chopped',
+            img: const AssetImage('images/ingredients/chives.png'),
+          ),
+          Ingredient(
+            name: 'Lemon',
+            measurements: '1/2zest',
+            img: const AssetImage('images/ingredients/lemon.png'),
           ),
         ],
         steps: [
@@ -319,8 +457,47 @@ class _FavoritesState extends State<Favorites> {
           Ingredient(
             name: 'Strip Loin',
             measurements: '2 1/2lbs',
-            img: const NetworkImage(
-                'https://embed.widencdn.net/img/beef/uerwtoubqu/exact/Strip%20Loin.psd?keep=c&u=7fueml'),
+            img: const AssetImage('images/ingredients/strip-loin.png'),
+          ),
+          Ingredient(
+            name: 'Olive oil',
+            measurements: '',
+            img: const AssetImage('images/ingredients/olive-oil.png'),
+          ),
+          Ingredient(
+            name: 'Salt',
+            measurements: '',
+            img: const AssetImage('images/ingredients/kosher-salt.png'),
+          ),
+          Ingredient(
+            name: 'Freshly ground black pepper',
+            measurements: '',
+            img: const AssetImage('images/ingredients/ground-black-pepper.png'),
+          ),
+          Ingredient(
+            name: 'Soft hoagie rolls',
+            measurements: '3/4open',
+            img: const AssetImage('images/ingredients/hoagie-roll.png'),
+          ),
+          Ingredient(
+            name: 'Provolone sauce',
+            measurements: '',
+            img: const AssetImage('images/ingredients/provolone.png'),
+          ),
+          Ingredient(
+            name: 'Sauteed mushrooms',
+            measurements: '',
+            img: const AssetImage('images/ingredients/sauteed-mushroom.png'),
+          ),
+          Ingredient(
+            name: 'Caramelized onions',
+            measurements: '',
+            img: const AssetImage('images/ingredients/large-onion.png'),
+          ),
+          Ingredient(
+            name: 'Sauteed peppers',
+            measurements: '',
+            img: const AssetImage('images/ingredients/sauteed-peppers.png'),
           ),
         ],
         steps: [
@@ -348,8 +525,22 @@ class _FavoritesState extends State<Favorites> {
           Ingredient(
             name: 'T-bone steak',
             measurements: '1/2lb',
-            img: const NetworkImage(
-                'https://embed.widencdn.net/img/beef/ct62lm01nw/800x600px/T-Bone%20Steak.psd?keep=c&u=7fueml'),
+            img: const AssetImage('images/ingredients/tbone-steak.png'),
+          ),
+          Ingredient(
+            name: 'Kosher salt',
+            measurements: '',
+            img: const AssetImage('images/ingredients/kosher-salt.png'),
+          ),
+          Ingredient(
+            name: 'Freshly ground black pepper',
+            measurements: '',
+            img: const AssetImage('images/ingredients/ground-black-pepper.png'),
+          ),
+          Ingredient(
+            name: 'Canola oil',
+            measurements: '1tbsp',
+            img: const AssetImage('images/ingredients/canola-oil.png'),
           ),
         ],
         steps: [

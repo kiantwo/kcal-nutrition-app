@@ -4,7 +4,7 @@ class Food {
   String name;
   String altName;
   String description;
-  ImageProvider mainImage;
+  AssetImage mainImage;
   List<NetworkImage> gallery;
 
   Food(

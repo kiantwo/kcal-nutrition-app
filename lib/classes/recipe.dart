@@ -28,7 +28,7 @@ class Recipe {
 class Ingredient {
   String name;
   String measurements;
-  NetworkImage img;
+  AssetImage img;
 
   Ingredient(
       {required this.name, required this.measurements, required this.img});
