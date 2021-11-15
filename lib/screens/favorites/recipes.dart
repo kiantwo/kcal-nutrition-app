@@ -117,7 +117,7 @@ class _RecipesState extends State<Recipes> {
                   singleRecipe.subDescription,
                   style: TextStyle(
                     height: 1.5,
-                    fontSize: 14.5,
+                    fontSize: 16.0,
                     color: Colors.grey.shade700,
                   ),
                 ),
@@ -520,6 +520,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
                   style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w800,
+                    color: Color(0xff565b57),
                   ),
                 ),
                 const SizedBox(height: 10.0),
