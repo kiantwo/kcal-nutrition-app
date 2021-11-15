@@ -154,7 +154,7 @@ class _RecipesState extends State<Recipes> {
     return Stack(
       children: [
         Image(
-          height: 150.0,
+          height: 160.0,
           width: 500.0,
           image: thumbnail,
           fit: BoxFit.cover,
@@ -261,7 +261,7 @@ class _RecipeInfoState extends State<RecipeInfo> {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(top: 18.0),
+          margin: const EdgeInsets.only(top: 10.0),
           child: InkWell(
             child: Hero(
               tag: widget.recipe.name + 'Image',
