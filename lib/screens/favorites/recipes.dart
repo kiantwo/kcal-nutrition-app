@@ -285,7 +285,14 @@ class _RecipeInfoState extends State<RecipeInfo> {
           ),
         ),
         Container(
-          padding: const EdgeInsets.fromLTRB(56.0, 36.0, 0.0, 14.0),
+          padding: const EdgeInsets.fromLTRB(28.0, 18.0, 0.0, 18.0),
+          margin: const EdgeInsets.fromLTRB(28.0, 18.0, 32.0, 0.0),
+          decoration: const BoxDecoration(
+            color: Color(0xfffefaef),
+            borderRadius: BorderRadius.all(
+              Radius.elliptical(24, 18),
+            ),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
